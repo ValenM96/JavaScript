@@ -1,13 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tienda de Bebidas</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Hola Mundo ( Valentin Meyer )</h1>
+    <header>
+        Tienda de Bebidas
+    </header>
+    <div class="container">
+        <div id="login">
+            <h2>Iniciar Sesión</h2>
+            <form id="login-form">
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Contraseña" required>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+        </div>
+        <div id="register">
+            <h2>Registrarse</h2>
+            <form id="register-form">
+                <input type="text" id="register-name" placeholder="Nombre" required>
+                <input type="email" id="register-email" placeholder="Email" required>
+                <input type="password" id="register-password" placeholder="Contraseña" required>
+                <button type="submit">Registrarse</button>
+            </form>
+        </div>
+        <div id="productos">
+            <h2>Productos</h2>
+            <input type="text" id="busqueda" placeholder="Buscar productos...">
+            <select id="filtro-categoria">
+                <option value="">Todas las Categorías</option>
+            </select>
+            <select id="ordenar-precio">
+                <option value="">Ordenar por Precio</option>
+                <option value="asc">Ascendente</option>
+                <option value="desc">Descendente</option>
+            </select>
+            <div id="lista-productos"></div>
+            <div id="paginacion"></div>
+        </div>
+        <div id="carrito">
+            <h2>Carrito de Compras</h2>
+            <div id="lista-carrito"></div>
+            <div class="carrito-total"></div>
+            <button id="finalizar-compra">Finalizar Compra</button>
+        </div>
+    </div>
     <script src="js/script.js"></script>
 </body>
 </html>
