@@ -5,50 +5,191 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda de Bebidas</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
     <header>
-        Tienda de Bebidas
+        <h1>Whisky House</h1>
+        <nav>
+            <ul>
+                <li>
+                    <div class="dropdown">
+                        <div class="dropdown-content">
+                            <a href="#" onclick="mostrarCarousel('carousel-johnny')">Johnnie Walker</a>
+                            <a href="#" onclick="mostrarCarousel('carousel-jack')">Jack Daniels</a>
+                            <a href="#" onclick="mostrarCarousel('carousel-macallan')">Macallan</a>
+                            <a href="#" onclick="mostrarCarousel('carousel-glenfiddich')">Glenfiddich</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div>
+                <button id="login-button" class="material-icons">person</button>
+                <button id="carrito-button" class="material-icons">shopping_cart</button>
+            </div>
+        </nav>
     </header>
-    <div class="container">
-        <div id="login">
-            <h2>Iniciar Sesión</h2>
-            <form id="login-form">
-                <input type="email" id="login-email" placeholder="Email" required>
-                <input type="password" id="login-password" placeholder="Contraseña" required>
-                <button type="submit">Iniciar Sesión</button>
-            </form>
-        </div>
-        <div id="register">
-            <h2>Registrarse</h2>
-            <form id="register-form">
-                <input type="text" id="register-name" placeholder="Nombre" required>
-                <input type="email" id="register-email" placeholder="Email" required>
-                <input type="password" id="register-password" placeholder="Contraseña" required>
-                <button type="submit">Registrarse</button>
-            </form>
-        </div>
-        <div id="productos">
-            <h2>Productos</h2>
-            <input type="text" id="busqueda" placeholder="Buscar productos...">
-            <select id="filtro-categoria">
-                <option value="">Todas las Categorías</option>
-            </select>
-            <select id="ordenar-precio">
-                <option value="">Ordenar por Precio</option>
-                <option value="asc">Ascendente</option>
-                <option value="desc">Descendente</option>
-            </select>
-            <div id="lista-productos"></div>
-            <div id="paginacion"></div>
-        </div>
-        <div id="carrito">
-            <h2>Carrito de Compras</h2>
-            <div id="lista-carrito"></div>
-            <div class="carrito-total"></div>
-            <button id="finalizar-compra">Finalizar Compra</button>
+    <main>
+    <div class="carousel-section">
+        <h2>Jhonnie Walker</h2>
+        <div class="carousel" id="carousel-johnny">
+            <button class="carousel-prev" onclick="carouselPrev('carousel-johnny')">&#9664;</button>
+            <div class="carousel-inner">
+                <div class="carousel-item">
+                    <img src="assets/img/redLabel.webp" alt="Johnnie Walker Red">
+                    <p>Johnnie Walker Red Label - $25.00</p>
+                    <button onclick="agregarAlCarrito('Johnnie Walker Red Label', 25)">Agregar al Carrito</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/blackLabel.webp" alt="Johnnie Walker Black">
+                    <p>Johnnie Walker Black Label - $30.00</p>
+                    <button onclick="agregarAlCarrito('Johnnie Walker Black Label', 30)">Agregar al Carrito</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/dobleBlack.webp" alt="Johnnie Walker DobleBlack">
+                    <p>Johnnie Walker Double Black - $35.00</p>
+                    <button onclick="agregarAlCarrito('Johnnie Walker Double Black', 35)">Agregar al Carrito</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/greenLabel.webp" alt="Johnnie Walker Green">
+                    <p>Johnnie Walker Green Label - $40.00</p>
+                    <button onclick="agregarAlCarrito('Johnnie Walker Green Label', 40)">Agregar al Carrito</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/18años.webp" alt="Johnnie Walker 18">
+                    <p>Johnnie Walker 18 Años - $50.00</p>
+                    <button onclick="agregarAlCarrito('Johnnie Walker 18 Años', 50)">Agregar al Carrito</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/blueLabel.webp" alt="Johnnie Walker Blue">
+                    <p>Johnnie Walker Blue Label - $100.00</p>
+                    <button onclick="agregarAlCarrito('Johnnie Walker Blue Label', 100)">Agregar al Carrito</button>
+                </div>
+            </div>
+            <button class="carousel-next" onclick="carouselNext('carousel-johnny')">&#9654;</button>
         </div>
     </div>
+    <div class="carousel-section">
+        <h2>Jack Daniels</h2>
+        <div class="carousel" id="carousel-jack">
+            <button class="carousel-prev" onclick="carouselPrev('carousel-jack')">&#9664;</button>
+            <div class="carousel-inner">
+                <div class="carousel-item">
+                    <img src="assets/img/jackDaniels.webp" alt="Jack Daniels">
+                    <p>Jack Daniels - $28.00</p>
+                    <button onclick="agregarAlCarrito('Jack Daniels', 28)">Agregar al Carrito</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/jackHoney.webp" alt="Jack Daniels Honey">
+                    <p>Jack Daniels Honey - $32.00</p>
+                    <button onclick="agregarAlCarrito('Jack Daniels Honey', 32)">Agregar al Carrito</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/jackFire.webp" alt="Jack Daniels Fire">
+                    <p>Jack Daniels Fire - $35.00</p>
+                    <button onclick="agregarAlCarrito('Jack Daniels Fire', 35)">Agregar al Carrito</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/jackApple.webp" alt="Jack Daniels Apple">
+                    <p>Jack Daniels Apple - $30.00</p>
+                    <button onclick="agregarAlCarrito('Jack Daniels Apple', 30)">Agregar al Carrito</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/jackRye.webp" alt="Jack Daniels Rye">
+                    <p>Jack Daniels Rye - $38.00</p>
+                    <button onclick="agregarAlCarrito('Jack Daniels Rye', 38)">Agregar al Carrito</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/Gentleman.webp" alt="Jack Daniels Gentleman">
+                    <p>Jack Daniels Gentleman - $40.00</p>
+                    <button onclick="agregarAlCarrito('Jack Daniels Gentleman', 40)">Agregar al Carrito</button>
+                </div>
+            </div>
+            <button class="carousel-next" onclick="carouselNext('carousel-jack')">&#9654;</button>
+        </div>
+    </div>
+    <div class="carousel-section">
+        <h2>Macallan</h2>
+        <div class="carousel" id="carousel-macallan">
+            <button class="carousel-prev" onclick="carouselPrev('carousel-macallan')">&#9664;</button>
+            <div class="carousel-inner">
+                <div class="carousel-item">
+                    <img src="assets/img/12.1.webp" alt="Macallan 12">
+                    <p>Macallan 12 Años - $60.00</p>
+                    <button onclick="agregarAlCarrito('Macallan 12 Años', 60)">Agregar al Carrito</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/12.2.webp" alt="Macallan 12">
+                    <p>Macallan 12 Años - $60.00</p>
+                    <button onclick="agregarAlCarrito('Macallan 12 Años', 60)">Agregar al Carrito</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/12.3.webp" alt="Macallan 12">
+                    <p>Macallan 12 Años - $60.00</p>
+                    <button onclick="agregarAlCarrito('Macallan 12 Años', 60)">Agregar al Carrito</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/15.1.webp" alt="Macallan 15">
+                    <p>Macallan 15 Años - $80.00</p>
+                    <button onclick="agregarAlCarrito('Macallan 15 Años', 80)">Agregar al Carrito</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/18.1.webp" alt="Macallan 18">
+                    <p>Macallan 18 Años - $100.00</p>
+                    <button onclick="agregarAlCarrito('Macallan 18 Años', 100)">Agregar al Carrito</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/macallanRare.webp" alt="Macallan Rare">
+                    <p>Macallan Rare Cask - $150.00</p>
+                    <button onclick="agregarAlCarrito('Macallan Rare Cask', 150)">Agregar al Carrito</button>
+                </div>
+            </div>
+            <button class="carousel-next" onclick="carouselNext('carousel-macallan')">&#9654;</button>
+        </div>
+    </div>
+    <div class="carousel-section">
+        <h2>Glenfiddich</h2>
+        <div class="carousel" id="carousel-glenfiddich">
+            <button class="carousel-prev" onclick="carouselPrev('carousel-glenfiddich')">&#9664;</button>
+            <div class="carousel-inner">
+                <div class="carousel-item">
+                    <img src="assets/img/vat.01.webp" alt="Glenfiddich vat1">
+                    <p>Glenfiddich Vat 01 - $45.00</p>
+                    <button onclick="agregarAlCarrito('Glenfiddich Vat 01', 45)">Agregar al Carrito</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/vat.02.webp" alt="Glenfiddich vat2">
+                    <p>Glenfiddich Vat 02 - $50.00</p>
+                    <button onclick="agregarAlCarrito('Glenfiddich Vat 02', 50)">Agregar al Carrito</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/12años.webp" alt="Glenfiddich 12">
+                    <p>Glenfiddich 12 Años - $55.00</p>
+                    <button onclick="agregarAlCarrito('Glenfiddich 12 Años', 55)">Agregar al Carrito</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/15años.webp" alt="Glenfiddich 15">
+                    <p>Glenfiddich 15 Años - $65.00</p>
+                    <button onclick="agregarAlCarrito('Glenfiddich 15 Años', 65)">Agregar al Carrito</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/glenfiddich.18.webp" alt="Glenfiddich 18">
+                    <p>Glenfiddich 18 Años - $75.00</p>
+                    <button onclick="agregarAlCarrito('Glenfiddich 18 Años', 75)">Agregar al Carrito</button>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/21años.webp" alt="Glenfiddich 21">
+                    <p>Glenfiddich 21 Años - $100.00</p>
+                    <button onclick="agregarAlCarrito('Glenfiddich 21 Años', 100)">Agregar al Carrito</button>
+                </div>
+            </div>
+            <button class="carousel-next" onclick="carouselNext('carousel-glenfiddich')">&#9654;</button>
+        </div>
+    </div>
+</main>
+<footer>
+    <p>&copy; 2024 Tienda de Bebidas</p>
+</footer>
     <script src="js/script.js"></script>
 </body>
 </html>

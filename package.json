@@ -1,0 +1,26 @@
+{
+  "name": "javascript",
+  "version": "1.0.0",
+  "description": "Proyecto para curso de Coderhouse JavaScript",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ValenM96/JavaScript.git"
+  },
+  "author": "Valentin Meyer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ValenM96/JavaScript/issues"
+  },
+  "homepage": "https://github.com/ValenM96/JavaScript#readme",
+  "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/icons-material": "^5.16.0",
+    "@mui/material": "^5.16.0",
+    "bootstrap": "^5.3.3"
+  }
+}

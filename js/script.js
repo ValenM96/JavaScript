@@ -1,174 +1,161 @@
 const productos = [
-    { id: 1, nombre: "Cerveza", precio: 1200, categoria: "Bebidas Alcohólicas" },
-    { id: 2, nombre: "Vino", precio: 3500, categoria: "Bebidas Alcohólicas" },
-    { id: 3, nombre: "Whisky", precio: 22000, categoria: "Bebidas Alcohólicas" },
-    { id: 4, nombre: "Vodka", precio: 15000, categoria: "Bebidas Alcohólicas" },
-    { id: 5, nombre: "Ron", precio: 13000, categoria: "Bebidas Alcohólicas" },
-    { id: 6, nombre: "Tequila", precio: 18000, categoria: "Bebidas Alcohólicas" },
-    { id: 7, nombre: "Gin", precio: 16000, categoria: "Bebidas Alcohólicas" },
-    { id: 8, nombre: "Champagne", precio: 25000, categoria: "Bebidas Alcohólicas" },
-    { id: 9, nombre: "Vermouth", precio: 7000, categoria: "Bebidas Alcohólicas" },
-    { id: 10, nombre: "Sidra", precio: 3000, categoria: "Bebidas Alcohólicas" },
-    { id: 11, nombre: "Fernet", precio: 7500, categoria: "Bebidas Alcohólicas" },
-    { id: 12, nombre: "Aperol", precio: 8500, categoria: "Bebidas Alcohólicas" },
-    { id: 13, nombre: "Cynar", precio: 6500, categoria: "Bebidas Alcohólicas" },
-    { id: 14, nombre: "Cognac", precio: 32000, categoria: "Bebidas Alcohólicas" },
-    { id: 15, nombre: "Pisco", precio: 14000, categoria: "Bebidas Alcohólicas" },
-    { id: 16, nombre: "Licor de Café", precio: 9000, categoria: "Bebidas Alcohólicas" },
-    { id: 17, nombre: "Licor de Cacao", precio: 8500, categoria: "Bebidas Alcohólicas" },
-    { id: 18, nombre: "Licor de Menta", precio: 8000, categoria: "Bebidas Alcohólicas" }
+    { id: 1, nombre: "Johnnie Walker Red Label", precio: 25 },
+    { id: 2, nombre: "Johnnie Walker Black Label", precio: 30 },
+    { id: 3, nombre: "Johnnie Walker Double Black", precio: 35 },
+    { id: 4, nombre: "Johnnie Walker Green Label", precio: 40 },
+    { id: 5, nombre: "Johnnie Walker 18 Años", precio: 50 },
+    { id: 6, nombre: "Johnnie Walker Blue Label", precio: 100 },
+    { id: 7, nombre: "Jack Daniels", precio: 28 },
+    { id: 8, nombre: "Jack Daniels Honey", precio: 32 },
+    { id: 9, nombre: "Jack Daniels Fire", precio: 35 },
+    { id: 10, nombre: "Jack Daniels Apple", precio: 30 },
+    { id: 11, nombre: "Jack Daniels Rye", precio: 38 },
+    { id: 12, nombre: "Jack Daniels Gentleman", precio: 40 },
+    { id: 13, nombre: "Macallan 12 Años", precio: 60 },
+    { id: 14, nombre: "Macallan 15 Años", precio: 80 },
+    { id: 15, nombre: "Macallan 18 Años", precio: 100 },
+    { id: 16, nombre: "Macallan Rare Cask", precio: 150 },
+    { id: 17, nombre: "Glenfiddich Vat 01", precio: 45 },
+    { id: 18, nombre: "Glenfiddich Vat 02", precio: 50 },
+    { id: 19, nombre: "Glenfiddich 12 Años", precio: 55 },
+    { id: 20, nombre: "Glenfiddich 15 Años", precio: 65 },
+    { id: 21, nombre: "Glenfiddich 18 Años", precio: 75 },
+    { id: 22, nombre: "Glenfiddich 21 Años", precio: 100 }
 ];
 
-const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-let usuarioActual = JSON.parse(localStorage.getItem('usuarioActual')) || null;
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 function actualizarCarrito() {
     const listaCarrito = document.getElementById('lista-carrito');
-    listaCarrito.innerHTML = '';
-    let total = 0;
+    if (listaCarrito) {
+        listaCarrito.innerHTML = '';
+        let total = 0;
 
-    carrito.forEach(item => {
-        const carritoItem = document.createElement('div');
-        carritoItem.classList.add('carrito-item');
-        carritoItem.innerHTML = `
-            ${item.nombre} - $${item.precio} x ${item.cantidad}
-            <button onclick="eliminarDelCarrito(${item.id})">Eliminar</button>
-            <input type="number" min="1" value="${item.cantidad}" onchange="actualizarCantidad(${item.id}, this.value)">
-        `;
-        listaCarrito.appendChild(carritoItem);
-        total += item.precio * item.cantidad;
-    });
+        carrito.forEach(item => {
+            const carritoItem = document.createElement('div');
+            carritoItem.classList.add('carrito-item');
+            carritoItem.innerHTML = `
+                ${item.nombre} - $${item.precio} x ${item.cantidad}
+                <button onclick="eliminarDelCarrito(${item.id})">Eliminar</button>
+                <input type="number" min="1" value="${item.cantidad}" onchange="actualizarCantidad(${item.id}, this.value)">
+            `;
+            listaCarrito.appendChild(carritoItem);
+            total += item.precio * item.cantidad;
+        });
 
-    document.querySelector('.carrito-total').textContent = `Total: $${total}`;
+        const carritoTotal = document.querySelector('.carrito-total');
+        if (carritoTotal) {
+            carritoTotal.textContent = `Total: $${total}`;
+        } else {
+            console.error('Elemento carrito-total no encontrado en el DOM.');
+        }
+    } else {
+        console.error('Elemento lista-carrito no encontrado en el DOM.');
+    }
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
 function cargarProductos(lista = productos) {
     const listaProductos = document.getElementById('lista-productos');
-    listaProductos.innerHTML = '';
+    if (listaProductos) {
+        listaProductos.innerHTML = '';
 
-    const categorias = [...new Set(lista.map(p => p.categoria))];
-
-    categorias.forEach(categoria => {
-        const categoriaDiv = document.createElement('div');
-        categoriaDiv.classList.add('categoria');
-        categoriaDiv.innerHTML = `<h3>${categoria}</h3>`;
-
-        lista
-            .filter(p => p.categoria === categoria)
-            .forEach(producto => {
-                const productoDiv = document.createElement('div');
-                productoDiv.classList.add('producto');
-                productoDiv.innerHTML = `
-                    ${producto.nombre} - $${producto.precio}
-                    <button onclick="agregarAlCarrito(${producto.id})">Agregar</button>
-                `;
-                categoriaDiv.appendChild(productoDiv);
-            });
-
-        listaProductos.appendChild(categoriaDiv);
-    });
+        lista.forEach(producto => {
+            const productoDiv = document.createElement('div');
+            productoDiv.classList.add('producto');
+            productoDiv.innerHTML = `
+                ${producto.nombre} - $${producto.precio}
+                <button onclick="agregarAlCarrito(${producto.id}, '${producto.nombre}', ${producto.precio})">Agregar</button>
+            `;
+            listaProductos.appendChild(productoDiv);
+        });
+    } else {
+        console.error('Elemento lista-productos no encontrado en el DOM.');
+    }
 }
 
-document.getElementById('busqueda').addEventListener('input', (e) => {
-    const searchText = e.target.value.toLowerCase();
-    const productosFiltrados = productos.filter(producto => 
-        producto.nombre.toLowerCase().includes(searchText));
-    cargarProductos(productosFiltrados);
-});
-
-document.getElementById('filtro-categoria').addEventListener('change', (e) => {
-    const categoriaSeleccionada = e.target.value;
-    const productosFiltrados = categoriaSeleccionada ? 
-        productos.filter(producto => producto.categoria === categoriaSeleccionada) : productos;
-    cargarProductos(productosFiltrados);
-});
-
-document.getElementById('ordenar-precio').addEventListener('change', (e) => {
-    const ordenSeleccionado = e.target.value;
-    const productosOrdenados = [...productos].sort((a, b) => {
-        if (ordenSeleccionado === 'asc') return a.precio - b.precio;
-        if (ordenSeleccionado === 'desc') return b.precio - a.precio;
-        return 0;
-    });
-    cargarProductos(productosOrdenados);
-});
-
-function agregarAlCarrito(id) {
-    const producto = productos.find(p => p.id === id);
-    const itemEnCarrito = carrito.find(p => p.id === id);
+function agregarAlCarrito(id, nombre, precio) {
+    let itemEnCarrito = carrito.find(item => item.id === id);
 
     if (itemEnCarrito) {
         itemEnCarrito.cantidad++;
     } else {
-        carrito.push({ ...producto, cantidad: 1 });
+        itemEnCarrito = { id, nombre, precio, cantidad: 1 };
+        carrito.push(itemEnCarrito);
     }
 
     actualizarCarrito();
 }
 
 function eliminarDelCarrito(id) {
-    const index = carrito.findIndex(p => p.id === id);
-    if (index !== -1) {
-        carrito.splice(index, 1);
-    }
+    carrito = carrito.filter(item => item.id !== id);
     actualizarCarrito();
 }
 
 function actualizarCantidad(id, cantidad) {
-    const itemEnCarrito = carrito.find(p => p.id === id);
-    if (itemEnCarrito) {
-        itemEnCarrito.cantidad = parseInt(cantidad);
+    cantidad = parseInt(cantidad);
+    if (cantidad > 0) {
+        let itemEnCarrito = carrito.find(item => item.id === id);
+        if (itemEnCarrito) {
+            itemEnCarrito.cantidad = cantidad;
+        }
+        actualizarCarrito();
+    } else {
+        console.error('La cantidad debe ser mayor que cero.');
     }
-    actualizarCarrito();
 }
 
-document.getElementById('login-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = document.getElementById('login-email').value;
-    const password = document.getElementById('login-password').value;
-    const usuario = usuarios.find(u => u.email === email && u.password === password);
+function carouselNext(id) {
+    const carousel = document.getElementById(id);
+    if (carousel) {
+        const inner = carousel.querySelector('.carousel-inner');
+        if (inner) {
+            const items = inner.children.length;
+            const visibleItems = 3;
+            const maxIndex = Math.ceil(items / visibleItems) - 1;
+            
+            let currentIndex = parseInt(inner.style.transform.replace('translateX(', '').replace('%)', '')) || 0;
+            currentIndex = Math.abs(currentIndex / 100);
 
-    if (usuario) {
-            usuarioActual = usuario;
-            localStorage.setItem('usuarioActual', JSON.stringify(usuarioActual));
-            alert('Inicio de sesión exitoso');
-        } else {
-            alert('Email o contraseña incorrectos');
+            if (currentIndex < maxIndex) {
+                inner.style.transform = `translateX(${-((currentIndex + 1) * 100)}%)`;
+            } else {
+                inner.style.transform = `translateX(0%)`;
+            }
         }
-    });
-    
-    document.getElementById('register-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('register-name').value;
-        const email = document.getElementById('register-email').value;
-        const password = document.getElementById('register-password').value;
-    
-        const usuarioExistente = usuarios.find(u => u.email === email);
-        if (usuarioExistente) {
-            alert('El email ya está registrado');
-            return;
+    }
+}
+
+function carouselPrev(id) {
+    const carousel = document.getElementById(id);
+    if (carousel) {
+        const inner = carousel.querySelector('.carousel-inner');
+        if (inner) {
+            const items = inner.children.length;
+            const visibleItems = 3;
+            const maxIndex = Math.ceil(items / visibleItems) - 1;
+            
+            let currentIndex = parseInt(inner.style.transform.replace('translateX(', '').replace('%)', '')) || 0;
+            currentIndex = Math.abs(currentIndex / 100);
+
+            if (currentIndex > 0) {
+                inner.style.transform = `translateX(${-((currentIndex - 1) * 100)}%)`;
+            } else {
+                inner.style.transform = `translateX(-${maxIndex * 100}%)`;
+            }
         }
-    
-        const nuevoUsuario = { name, email, password };
-        usuarios.push(nuevoUsuario);
-        localStorage.setItem('usuarios', JSON.stringify(usuarios));
-        alert('Registro exitoso, ahora puedes iniciar sesión');
-    });
-    
-    document.getElementById('finalizar-compra').addEventListener('click', () => {
-        if (carrito.length === 0) {
-            alert('El carrito está vacío. Agrega productos antes de finalizar la compra.');
-            return;
-        }
-        setTimeout(() => {
-            alert('Compra realizada con éxito. Gracias por tu compra!');
-            carrito.length = 0;
-            actualizarCarrito();
-        }, 1000);
-    });
-    
+    }
+}
+
+function mostrarCarousel(id) {
+    const carouselSection = document.getElementById(id);
+    if (carouselSection) {
+        carouselSection.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+// Cargar productos y actualizar carrito al inicio
+document.addEventListener('DOMContentLoaded', () => {
     cargarProductos();
     actualizarCarrito();
-    
+});
