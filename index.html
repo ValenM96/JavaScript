@@ -19,10 +19,35 @@
                     <a href="#carousel-macallan" onclick="mostrarMarca('macallan')">Macallan</a>
                     <a href="#carousel-glenfiddich" onclick="mostrarMarca('glenfiddich')">Glenfiddich</a>
                 </div>
+                <div>
+                    <ul">
+                        <li class="nuevosProductos">
+                            <a href="./pages/productosAlt.html" target="_blank">Productos Alternativos</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="header-right">
                 <button id="login-button" class="material-icons">person</button>
                 <button id="carrito-button" class="material-icons">shopping_cart</button>
+            </div>
+            <div class="container" id="auth-container" style="display: none;">
+                <div class="form-container" id="register-form">
+                    <h2>Registro</h2>
+                    <form>
+                        <input type="text" id="reg-username" placeholder="Nombre de usuario" required>
+                        <input type="password" id="reg-password" placeholder="Contraseña" required>
+                        <button type="button" onclick="registerUser()">Registrarse</button>
+                    </form>
+                </div>
+                <div class="form-container" id="login-form">
+                    <h2>Inicio de Sesión</h2>
+                    <form>
+                        <input type="text" id="login-username" placeholder="Nombre de usuario" required>
+                        <input type="password" id="login-password" placeholder="Contraseña" required>
+                        <button type="button" onclick="loginUser()">Iniciar Sesión</button>
+                    </form>
+                </div>
             </div>
         </div>
     </header>

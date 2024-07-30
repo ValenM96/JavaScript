@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos Alternativos</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <header>
+        <h1>Whisky House</h1>
+        <div class="header">
+            <div class="header-right">
+                <button id="login-button" class="material-icons">person</button>
+                <button id="carrito-button" class="material-icons">shopping_cart</button>
+            </div>
+            <div class="container" id="auth-container" style="display: none;">
+                <div class="form-container" id="register-form">
+                    <h2>Registro</h2>
+                    <form>
+                        <input type="text" id="reg-username" placeholder="Nombre de usuario" required>
+                        <input type="password" id="reg-password" placeholder="Contraseña" required>
+                        <button type="button" onclick="registerUser()">Registrarse</button>
+                    </form>
+                </div>
+                <div class="form-container" id="login-form">
+                    <h2>Inicio de Sesión</h2>
+                    <form>
+                        <input type="text" id="login-username" placeholder="Nombre de usuario" required>
+                        <input type="password" id="login-password" placeholder="Contraseña" required>
+                        <button type="button" onclick="loginUser()">Iniciar Sesión</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div id="productsAlt"></div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Whisky House - Todos los derechos reservados</p>
+    </footer>
+    <div id="carrito" class="carrito">
+        <div class="carrito-header">
+            <h2>Carrito de Compras</h2>
+            <button class="material-icons" onclick="toggleCarrito()">close</button>
+        </div>
+        <ul class="carrito-productos">
+        </ul>
+        <div class="carrito-footer">
+            <button id="vaciar-carrito" onclick="vaciarCarrito()">Vaciar Carrito</button>
+            <button id="finalizar-compra-btn" class="btn-finalizar-compra" onclick="finalizarCompra()">Finalizar Compra</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/script.js"></script>
+</body>
+</html>
